@@ -126,14 +126,19 @@ export async function calculateContemptRiskScore(judgmentId: string): Promise<Co
   else if (score >= 25) level = 'MODERATE'
   else level = 'LOW'
 
-  // Update the judgment record
-  await db.judgment.update({
-    where: { id: judgmentId },
-    data: {
-      contemptRiskScore: score,
-      contemptRiskLevel: level,
-    },
-  })
+  // Update the judgment record (catch error for Vercel read-only filesystem)
+  try {
+    await db.judgment.update({
+      where: { id: judgmentId },
+      data: {
+        contemptRiskScore: score,
+        contemptRiskLevel: level,
+      },
+    })
+  } catch (error) {
+    // Ignore update errors in read-only environments (like Vercel serverless)
+    console.warn(`Could not update contempt risk for ${judgmentId} (likely read-only FS)`)
+  }
 
   return {
     judgmentId,
