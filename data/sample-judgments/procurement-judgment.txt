@@ -1,0 +1,78 @@
+IN THE HIGH COURT OF DELHI AT NEW DELHI
+
+WRIT PETITION (CIVIL) NO. 12345 OF 2024
+
+BETWEEN:
+
+TRANSPARENCY WATCH INDIA
+Petitioner
+
+AND
+
+MINISTRY OF DEFENCE
+DEFENCE PROCUREMENT BOARD
+Respondents
+
+CORAM:
+
+THE HON'BLE MR. JUSTICE RAJENDRA PRASAD
+
+JUDGMENT
+
+DATE: 10th December 2024
+
+1. This public interest litigation has been filed challenging the opacity and alleged irregularities in the defence procurement process, particularly concerning a tender for supply of tactical communication equipment valued at Rs. 5,000 crores.
+
+2. The petitioner organization, working on transparency and accountability in government processes, has raised concerns about violations of the Defence Procurement Procedure (DPP) 2023 and the General Financial Rules in the subject tender.
+
+ISSUES:
+
+3. The principal issues for consideration are:
+   (i) Whether the tender process followed by the respondents complies with the mandatory provisions of the Defence Procurement Procedure 2023;
+   (ii) Whether the evaluation criteria and weightages were disclosed transparently;
+   (iii) What remedial measures are required to ensure transparency in future procurements.
+
+FINDINGS:
+
+4. Upon examination of the tender documents and the responses filed by the respondents, we find several procedural irregularities. The technical evaluation committee's composition was changed midway through the evaluation process without proper documentation or approval from competent authority.
+
+5. Furthermore, the pre-qualification criteria were modified after the bid opening, which is impermissible under Rule 161 of the General Financial Rules, 2017. Such modifications can only be made through a formal addendum before the bid submission deadline.
+
+6. We note that while national security considerations require a degree of confidentiality, this cannot be used as a blanket cover to avoid all scrutiny and transparency mechanisms.
+
+DIRECTIONS:
+
+7. To ensure transparency and fairness in defence procurement while safeguarding legitimate security concerns, we issue the following directions:
+
+   a) The Ministry of Defence shall within 30 days publish comprehensive Standard Operating Procedures (SOPs) for the entire procurement cycle on its website. These SOPs must detail timelines, evaluation criteria frameworks, and grievance redressal mechanisms, while maintaining appropriate confidentiality for sensitive technical specifications.
+
+   b) The Defence Procurement Board must constitute an independent three-member Technical Evaluation Committee for every tender above Rs. 1,000 crores, with at least one member being a domain expert from outside the ministry. This committee's composition shall be announced at the time of tender publication. Implementation deadline: 60 days.
+
+8. All defence procurements above Rs. 500 crores shall mandatorily be placed before a Vigilance Committee headed by a retired Supreme Court or High Court judge, appointed by the Central Vigilance Commission. This committee shall review the process for compliance and fairness within 30 days of final evaluation. The first such committee shall be constituted within 90 days.
+
+9. The respondents shall create a comprehensive database of all defence tenders, their status, and award details on the ministry website within 120 days. Information that does not compromise security, such as tender timelines, number of bidders, and contract values, must be publicly accessible.
+
+10. Any bidder aggrieved by the tender process shall have the right to seek reasons for their disqualification or rejection in writing within 15 days of making such request. The procuring entity must respond within 30 days with specific reasons, except where disclosure would compromise national security.
+
+11. The current tender in question (Tender No. DF-2024/TacComm/567) is hereby quashed. The respondents are directed to re-issue the tender within 45 days after incorporating necessary corrections and ensuring compliance with the DPP 2023. The re-evaluation must be completed by a fresh committee within 180 days of tender re-issuance.
+
+12. A whistleblower protection mechanism specifically for defence procurement shall be established within 90 days, administered by the Central Vigilance Commission, enabling officials and bidders to report irregularities without fear of retaliation.
+
+13. The Ministry of Defence shall conduct mandatory training programs for all procurement officials on the DPP 2023 and ethical procurement practices within 120 days. Certification from such training shall be a prerequisite for officials to be appointed to any tender evaluation committee.
+
+14. For the subject tender and all future tenders above Rs. 1,000 crores, a third-party audit by a firm empaneled with the Comptroller and Auditor General of India shall be mandated. The audit report must be submitted to Parliament within 60 days of contract award.
+
+15. The Ministry shall file a compliance affidavit before this Court within 60 days of each deadline mentioned in these directions. The first affidavit shall be filed by 10th February 2025.
+
+16. We further direct the Cabinet Secretary to constitute a high-level committee within 30 days to review and recommend comprehensive reforms to the Defence Procurement Procedure to balance transparency requirements with national security imperatives. The committee's report shall be submitted within 180 days.
+
+17. This petition is disposed of with the above directions. No order as to costs.
+
+18. The matter will be listed for compliance review on 10th June 2025.
+
+
+Sd/-
+JUSTICE RAJENDRA PRASAD
+
+New Delhi
+10th December 2024

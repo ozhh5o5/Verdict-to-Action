@@ -1,0 +1,33 @@
+---
+title: Theme 11 — Verdict→Action Architecture
+---
+flowchart TB
+    subgraph Input["INPUT"]
+      PDF["Court Judgment PDF<br/>(typed or scanned)"]
+    end
+    subgraph Extract["EXTRACTION PIPELINE"]
+      PARSE["PDF Text Extractor<br/>(pdf-parse)"]
+      AI["AI Action Plan Extractor<br/>• parties<br/>• obligations<br/>• deadlines<br/>• responsible parties<br/>• verbatim source excerpts"]
+      DEADLINE["Deadline Parser<br/>('within 90 days'<br/>→ ISO date)"]
+    end
+    subgraph Store["STRUCTURED STORE"]
+      DB[("SQLite + Prisma<br/>judgments • parties<br/>obligations • updates")]
+    end
+    subgraph UI["GOVERNMENT EXECUTOR DASHBOARD"]
+      DASH["Obligation Tracker<br/>(priority · status · deadline)"]
+      VERIFY["Verification Workflow<br/>(source excerpt traceable)"]
+      CAL["Deadline Calendar<br/>+ overdue alerts"]
+    end
+    PDF --> PARSE --> AI
+    AI --> DEADLINE
+    AI --> DB
+    DEADLINE --> DB
+    DB --> DASH & VERIFY & CAL
+    classDef input fill:#f1f5f9,stroke:#334155,color:#0f172a
+    classDef pipe fill:#475569,stroke:#1e293b,color:#fff
+    classDef store fill:#64748b,stroke:#334155,color:#fff
+    classDef ui fill:#f8fafc,stroke:#334155,color:#0f172a
+    class PDF input
+    class PARSE,AI,DEADLINE pipe
+    class DB store
+    class DASH,VERIFY,CAL ui

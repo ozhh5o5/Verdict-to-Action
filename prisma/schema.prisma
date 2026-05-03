@@ -1,0 +1,123 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Judgment {
+  id                String             @id @default(cuid())
+  title             String
+  courtName         String?
+  caseNumber        String?
+  benchComposition  String?
+  judgmentDate       DateTime?
+  filePath          String?
+  fileName          String
+  fullText          String?
+  pageCount         Int?
+  status            String             @default("UPLOADED")
+  contemptRiskScore Float              @default(0)
+  contemptRiskLevel String             @default("LOW")
+  uploadedAt        DateTime           @default(now())
+  obligations       Obligation[]
+  parties           Party[]
+  statutoryConflicts StatutoryConflict[]
+}
+
+model Party {
+  id          String       @id @default(cuid())
+  judgmentId  String
+  name        String
+  role        String
+  judgment    Judgment     @relation(fields: [judgmentId], references: [id], onDelete: Cascade)
+  obligations Obligation[]
+}
+
+model Obligation {
+  id                 String             @id @default(cuid())
+  judgmentId         String
+  type               String
+  status             String             @default("PENDING")
+  priority           String
+  title              String
+  description        String
+  deadline           DateTime?
+  deadlineText       String?
+  responsiblePartyId String?
+  assignedOfficer    String?
+  sourceExcerpt      String
+  sourcePage         Int?
+  reasoning          String
+  reasoningChain     String?
+  triggerCondition   String?
+  confidence         Float
+  verified           Boolean            @default(false)
+  verifierNotes      String?
+  verifiedAt         DateTime?
+  escalationLevel    Int                @default(0)
+  escalatedAt        DateTime?
+  createdAt          DateTime           @default(now())
+  judgment           Judgment           @relation(fields: [judgmentId], references: [id], onDelete: Cascade)
+  responsibleParty   Party?             @relation(fields: [responsiblePartyId], references: [id])
+  updates            ObligationUpdate[]
+  escalationEvents   EscalationEvent[]
+  statutoryConflicts StatutoryConflict[]
+
+  @@index([judgmentId, status])
+}
+
+model ObligationUpdate {
+  id           String     @id @default(cuid())
+  obligationId String
+  status       String
+  note         String
+  evidenceUrl  String?
+  updatedBy    String
+  updatedAt    DateTime   @default(now())
+  obligation   Obligation @relation(fields: [obligationId], references: [id], onDelete: Cascade)
+}
+
+model EscalationEvent {
+  id              String     @id @default(cuid())
+  obligationId    String
+  fromLevel       Int
+  toLevel         Int
+  fromRole        String
+  toRole          String
+  reason          String
+  triggeredBy     String     @default("SYSTEM")
+  createdAt       DateTime   @default(now())
+  obligation      Obligation @relation(fields: [obligationId], references: [id], onDelete: Cascade)
+}
+
+model StatuteLaw {
+  id           String              @id @default(cuid())
+  title        String
+  shortName    String
+  jurisdiction String
+  section      String
+  provision    String
+  category     String
+  conflicts    StatutoryConflict[]
+}
+
+model StatutoryConflict {
+  id              String     @id @default(cuid())
+  obligationId    String
+  judgmentId       String
+  statuteLawId    String
+  conflictType    String
+  severity        String
+  description     String
+  obligationText  String
+  statuteText     String
+  recommendation  String
+  detectedAt      DateTime   @default(now())
+  resolved        Boolean    @default(false)
+  obligation      Obligation @relation(fields: [obligationId], references: [id], onDelete: Cascade)
+  judgment        Judgment   @relation(fields: [judgmentId], references: [id], onDelete: Cascade)
+  statuteLaw      StatuteLaw @relation(fields: [statuteLawId], references: [id], onDelete: Cascade)
+}
