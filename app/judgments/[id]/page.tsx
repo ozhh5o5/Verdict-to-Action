@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { Calendar, Scale, CheckCircle2, ShieldAlert, ArrowLeft, Lightbulb, AlertTriangle, Crosshair } from 'lucide-react'
+import { Calendar, Scale, CheckCircle2, ShieldAlert, ArrowLeft, Lightbulb, AlertTriangle, Crosshair, FileText } from 'lucide-react'
 import { format } from 'date-fns'
 import { formatDeadline } from '@/lib/deadlines'
 
