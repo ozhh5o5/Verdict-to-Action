@@ -80,23 +80,31 @@ export default function JudgmentDetail() {
   useEffect(() => {
     // Simulate API fetch delay
     const timer = setTimeout(() => {
-      const foundJudgment = MOCK_DATA.judgments.find(j => j.id === id) as any
+      const foundJudgment = MOCK_DATA.judgments?.find(j => j.id === id) as any
       if (foundJudgment) {
+        console.log('Found judgment:', foundJudgment.title)
         setJudgment(foundJudgment)
         
         // Group conflicts by obligation for this judgment
-        const judgmentConflicts = MOCK_DATA.conflicts.filter(c => (c as any).obligation.judgmentId === id)
+        const judgmentConflicts = (MOCK_DATA.conflicts || []).filter(c => 
+          (c as any).judgmentId === id || (c as any).obligation?.judgmentId === id
+        )
         const groupedConflicts: { [key: string]: any } = {}
         judgmentConflicts.forEach((c: any) => {
-          if (!groupedConflicts[c.obligationId]) {
-            groupedConflicts[c.obligationId] = {
-              obligation: c.obligation,
-              conflicts: []
+          const obligationId = c.obligationId || c.obligation?.id
+          if (obligationId) {
+            if (!groupedConflicts[obligationId]) {
+              groupedConflicts[obligationId] = {
+                obligation: c.obligation || { id: obligationId, title: 'Unknown Obligation', priority: 'MEDIUM' },
+                conflicts: []
+              }
             }
+            groupedConflicts[obligationId].conflicts.push(c)
           }
-          groupedConflicts[c.obligationId].conflicts.push(c)
         })
         setConflicts(Object.values(groupedConflicts))
+      } else {
+        console.error('Judgment not found for ID:', id)
       }
       setLoading(false)
     }, 500)
@@ -369,19 +377,27 @@ export default function JudgmentDetail() {
                           View AI Reasoning Trace ({(obligation.confidence * 100).toFixed(0)}% confidence)
                         </summary>
                         <div className="mt-3 bg-slate-950 rounded-md p-3 border border-slate-800 text-xs text-slate-400 space-y-2 max-h-[200px] overflow-y-auto">
-                          {obligation.reasoningChain ? (
-                            JSON.parse(obligation.reasoningChain).map((step: string, i: number) => (
-                              <div key={i} className="flex gap-2">
-                                <div className="text-slate-600 shrink-0">[{i+1}]</div>
-                                <div>{step}</div>
+                          {(() => {
+                            try {
+                              if (obligation.reasoningChain) {
+                                const steps = JSON.parse(obligation.reasoningChain);
+                                return Array.isArray(steps) ? steps.map((step: string, i: number) => (
+                                  <div key={i} className="flex gap-2">
+                                    <div className="text-slate-600 shrink-0">[{i+1}]</div>
+                                    <div>{step}</div>
+                                  </div>
+                                )) : <div>{obligation.reasoning}</div>;
+                              }
+                            } catch (e) {
+                              console.error('Error parsing reasoning chain:', e);
+                            }
+                            return (
+                              <div className="flex gap-2">
+                                <div className="text-slate-600 shrink-0">[1]</div>
+                                <div>{obligation.reasoning}</div>
                               </div>
-                            ))
-                          ) : (
-                            <div className="flex gap-2">
-                              <div className="text-slate-600 shrink-0">[1]</div>
-                              <div>{obligation.reasoning}</div>
-                            </div>
-                          )}
+                            );
+                          })()}
                         </div>
                       </details>
 

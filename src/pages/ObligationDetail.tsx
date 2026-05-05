@@ -75,10 +75,25 @@ export default function ObligationDetail() {
   useEffect(() => {
     const timer = setTimeout(() => {
       // Find obligation in mock data
-      const found = MOCK_DATA.judgments.flatMap((j: any) => j.obligations).find((o: any) => o.id === id) as any
+      const allObligations = MOCK_DATA.judgments?.flatMap((j: any) => 
+        (j.obligations || []).map((o: any) => ({
+          ...o,
+          judgment: {
+            id: j.id,
+            title: j.title,
+            caseNumber: j.caseNumber,
+            courtName: j.courtName
+          }
+        }))
+      ) || []
+      
+      const found = allObligations.find((o: any) => o.id === id) as any
       if (found) {
+        console.log('Found obligation:', found.title)
         setObligation(found)
         setNewStatus(found.status)
+      } else {
+        console.error('Obligation not found for ID:', id)
       }
       setLoading(false)
     }, 500)
@@ -320,16 +335,22 @@ export default function ObligationDetail() {
                     </Badge>
                   </div>
                   <div className="space-y-2.5 text-sm text-slate-300">
-                    {obligation.reasoningChain ? (
-                      JSON.parse(obligation.reasoningChain).map((step: string, i: number) => (
-                        <div key={i} className="flex gap-3">
-                          <div className="text-blue-500/50 font-mono font-bold mt-0.5">[{i+1}]</div>
-                          <div className="leading-relaxed">{step}</div>
-                        </div>
-                      ))
-                    ) : (
-                      <p>{obligation.reasoning}</p>
-                    )}
+                    {(() => {
+                      try {
+                        if (obligation.reasoningChain) {
+                          const steps = JSON.parse(obligation.reasoningChain);
+                          return Array.isArray(steps) ? steps.map((step: string, i: number) => (
+                            <div key={i} className="flex gap-3">
+                              <div className="text-blue-500/50 font-mono font-bold mt-0.5">[{i+1}]</div>
+                              <div className="leading-relaxed">{step}</div>
+                            </div>
+                          )) : <p>{obligation.reasoning}</p>;
+                        }
+                      } catch (e) {
+                        console.error('Error parsing reasoning chain:', e);
+                      }
+                      return <p>{obligation.reasoning}</p>;
+                    })()}
                   </div>
                 </div>
               </CardContent>

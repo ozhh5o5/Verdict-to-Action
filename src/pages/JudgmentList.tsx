@@ -34,7 +34,7 @@ export default function JudgmentList() {
         judgmentDate: j.judgmentDate,
         uploadedAt: j.uploadedAt,
         status: j.status,
-        obligationCount: j.obligations.length
+        obligationCount: (j.obligations || []).length
       }))
       setJudgments(data)
       setLoading(false)
