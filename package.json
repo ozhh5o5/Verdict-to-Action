@@ -1,44 +1,33 @@
 {
-  "name": "theme11-court-action",
-  "version": "0.1.0",
-  "private": true,
+  "name": "verdict-to-action-vite",
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "seed": "tsx scripts/seed-demo.ts",
-    "postinstall": "prisma generate"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.1.1",
     "@base-ui/react": "^1.4.1",
-    "@faker-js/faker": "^10.4.0",
-    "@prisma/client": "^5.22.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "lucide-react": "^1.8.0",
-    "next": "16.2.4",
-    "pdf-parse": "^2.4.5",
-    "pdfkit": "^0.18.0",
-    "prisma": "^5.22.0",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/pdf-parse": "^1.1.5",
-    "@types/pdfkit": "^0.17.6",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "autoprefixer": "^10.5.0",
-    "dotenv": "^17.4.2",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.4",
-    "postcss": "^8.5.10",
-    "tailwindcss": "^3.4.19",
-    "tsx": "^4.21.0",
-    "typescript": "^5"
+    "@types/node": "^20.17.10",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5"
   }
 }
